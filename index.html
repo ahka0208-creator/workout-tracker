@@ -8,7 +8,7 @@
     :root {
       --bg-dark: #121212;
       --bg-card: #1e1e24;
-      --primary: #facc15; /* 經典鐵館金 */
+      --primary: #facc15; 
       --primary-dim: rgba(250, 204, 21, 0.15);
       --text-main: #f8fafc;
       --text-sub: #94a3b8;
@@ -38,7 +38,6 @@
       position: relative;
     }
 
-    /* 頂部標題 */
     .header {
       padding: 20px 20px 10px;
       text-align: center;
@@ -50,15 +49,13 @@
     }
     .header h1 { margin: 0; font-size: 22px; color: var(--primary); letter-spacing: 1px; }
 
-    /* 內容區域 */
     .content {
       flex: 1;
       overflow-y: auto;
       padding: 20px;
-      padding-bottom: 80px; /* 留位給底部導航 */
+      padding-bottom: 80px; 
     }
 
-    /* 卡片與通用樣式 */
     .card {
       background: var(--bg-card);
       border-radius: 16px;
@@ -70,12 +67,10 @@
     .card-title { font-size: 18px; margin: 0 0 15px 0; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
     .card-title::before { content: ""; display: inline-block; width: 4px; height: 18px; background: var(--primary); border-radius: 2px; }
 
-    /* 週期進度條 */
     .cycle-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: var(--text-sub); }
     .progress-bar { width: 100%; height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin-bottom: 20px;}
     .progress-fill { height: 100%; background: var(--primary); transition: width 0.3s ease; }
 
-    /* 表單與輸入 */
     .input-group { margin-bottom: 15px; }
     .input-group label { display: block; margin-bottom: 8px; font-size: 14px; color: var(--text-sub); }
     input, select, textarea {
@@ -84,7 +79,6 @@
     }
     input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); }
 
-    /* 按鈕 */
     .btn {
       width: 100%; padding: 15px; border-radius: 10px; border: none; font-size: 16px; font-weight: bold;
       cursor: pointer; transition: all 0.2s; text-align: center;
@@ -94,12 +88,14 @@
     .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
     .btn-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
 
-    /* 訓練組數紀錄列 */
-    .set-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: center; margin-bottom: 10px; }
-    .set-row input { text-align: center; padding: 10px; }
-    .del-btn { background: transparent; border: none; color: var(--danger); font-size: 20px; padding: 5px; cursor: pointer; }
+    .set-row, .plan-row { display: grid; gap: 8px; align-items: center; margin-bottom: 10px; }
+    .set-row { grid-template-columns: 1fr 1fr 1fr auto; }
+    .plan-row { grid-template-columns: 2fr 1fr 1fr auto; }
+    .set-row input, .plan-row input { text-align: center; padding: 10px; font-size: 14px;}
+    .plan-row input.p-name { text-align: left; }
+    
+    .del-btn { background: transparent; border: none; color: var(--danger); font-size: 22px; padding: 5px; cursor: pointer; line-height: 1;}
 
-    /* 歷史紀錄清單 */
     .history-item { border-bottom: 1px solid var(--border); padding: 15px 0; }
     .history-item:last-child { border-bottom: none; }
     .h-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
@@ -108,7 +104,6 @@
     .h-details { font-size: 14px; color: #cbd5e1; }
     .h-badge { display: inline-block; background: var(--primary-dim); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-right: 5px;}
 
-    /* 底部導航欄 */
     .nav-bar {
       position: absolute; bottom: 0; left: 0; width: 100%;
       background: rgba(18, 18, 18, 0.95); backdrop-filter: blur(10px);
@@ -123,7 +118,6 @@
     .nav-item.active { color: var(--primary); }
     .nav-icon { font-size: 22px; }
 
-    /* 分頁顯示控制 */
     .view-section { display: none; animation: fadeIn 0.3s ease; }
     .view-section.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -135,7 +129,7 @@
 <div class="app-container">
   
   <div class="header">
-    <h1 id="header-title">10 週訓練週期追蹤</h1>
+    <h1 id="header-title">10 週週期追蹤</h1>
   </div>
 
   <div class="content">
@@ -146,10 +140,10 @@
         <h2 class="card-title">當前週期進度</h2>
         <div class="cycle-header">
           <span id="cycle-name-display">自然健美肌肥大週期</span>
-          <span id="cycle-week-display">第 3 週 / 10 週</span>
+          <span id="cycle-week-display">第 1 週 / 10 週</span>
         </div>
         <div class="progress-bar">
-          <div class="progress-fill" id="cycle-progress" style="width: 30%;"></div>
+          <div class="progress-fill" id="cycle-progress" style="width: 10%;"></div>
         </div>
         <div style="display: flex; gap: 10px;">
           <button class="btn btn-secondary" style="padding: 8px; font-size: 14px;" onclick="adjustWeek(-1)">- 退一週</button>
@@ -160,7 +154,7 @@
       <div class="card">
         <h2 class="card-title">今日訓練預覽</h2>
         <div style="color: var(--text-sub); margin-bottom: 15px;">今天是 <span id="today-day" style="color: var(--primary); font-weight:bold;">星期一</span></div>
-        <div id="today-routine" style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; font-size: 15px; line-height: 1.6;">
+        <div id="today-routine" style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; font-size: 15px; line-height: 1.6; color: var(--text-main);">
           載入中...
         </div>
         <button class="btn btn-primary" style="margin-top: 15px;" onclick="switchTab('record')">開始今日訓練</button>
@@ -191,16 +185,14 @@
         </div>
 
         <div class="input-group">
-          <label>輸入組數 (Sets)</label>
+          <label>輸入實際組數 (Sets)</label>
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; margin-bottom: 5px; color: var(--text-sub); font-size: 12px; text-align: center;">
             <div>重量 (kg)</div>
             <div>次數 (Reps)</div>
             <div>RPE (可選)</div>
             <div></div>
           </div>
-          <div id="sets-container">
-            <!-- 組數列會在這裡動態生成 -->
-          </div>
+          <div id="sets-container"></div>
           <button class="btn btn-secondary" style="margin-top: 10px;" onclick="addSetRow()">+ 新增一組</button>
         </div>
 
@@ -223,7 +215,7 @@
       <div class="card">
         <h2 class="card-title">每週課表編排</h2>
         <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 20px;">
-          設定你每星期的固定訓練菜單。當完成 10 週週期後，可以重置並編排新的組合。
+          設定你每星期的固定訓練菜單。
         </p>
 
         <div class="input-group">
@@ -240,10 +232,21 @@
         </div>
 
         <div class="input-group">
-          <label>該日訓練內容 (直接編輯)</label>
-          <textarea id="plan-day-content" rows="4" placeholder="例如：&#10;1. 槓鈴深蹲 4組&#10;2. 腿舉 3組&#10;3. 坐姿腿彎舉 3組"></textarea>
+          <label style="margin-bottom: 10px;">該日訓練內容</label>
+          <div style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 8px; margin-bottom: 5px; color: var(--text-sub); font-size: 12px; text-align: center;">
+            <div style="text-align: left; padding-left: 5px;">動作名稱</div>
+            <div>組數</div>
+            <div>次數</div>
+            <div></div>
+          </div>
+          
+          <!-- 課表動作列表 -->
+          <div id="plan-exercises-container"></div>
+          
+          <button class="btn btn-secondary" style="margin-top: 10px; border-style: dashed;" onclick="addPlanExerciseRow()">+ 新增一格動作</button>
         </div>
-        <button class="btn btn-secondary" onclick="savePlanForDay()">儲存當日課表</button>
+        
+        <button class="btn btn-primary" onclick="savePlanForDay()">💾 儲存當日課表</button>
       </div>
 
       <div class="card" style="border-color: rgba(239, 68, 68, 0.3);">
@@ -254,7 +257,7 @@
         </div>
         <button class="btn btn-secondary" style="margin-bottom: 15px;" onclick="updateCycleName()">更新名稱</button>
         
-        <button class="btn btn-danger" onclick="resetCycle()">⚠️ 結束當前週期 (重置進度與課表)</button>
+        <button class="btn btn-danger" onclick="resetCycle()">⚠️ 結束當前週期 (重置進度)</button>
       </div>
     </div>
 
@@ -286,28 +289,53 @@
       currentWeek: 1,
       maxWeeks: 10
     },
+    // 將常規字串改為物件陣列，支援更精細的編排
     routine: {
-      "星期一": "1. 槓鈴臥推 (4x8-12)\n2. 上斜啞鈴臥推 (3x10)\n3. 坐姿划船 (4x10)\n4. 滑輪飛鳥 (3x15)",
-      "星期二": "1. 槓鈴深蹲 (4x6-8)\n2. 羅馬尼亞硬拉 RDL (3x10)\n3. 腿舉 (3x12)\n4. 站姿提踵 (4x15)",
-      "星期三": "積極恢復 / 休息\n(可補充 ZMA 幫助睡眠恢復)",
-      "星期四": "1. 槓鈴肩推 (4x8)\n2. 引體上升 (4x力竭)\n3. 啞鈴側平舉 (4x15)",
-      "星期五": "1. 硬拉 (3x5)\n2. 俯身划船 (4x8)\n3. 二頭彎舉 (3x12)\n4. 三頭下壓 (3x12)",
-      "星期六": "弱點補強 / 核心訓練",
-      "星期日": "完全休息"
+      "星期一": [
+        {name: "槓鈴臥推", sets: "4", reps: "8-12"},
+        {name: "上斜啞鈴臥推", sets: "3", reps: "10"},
+        {name: "坐姿划船", sets: "4", reps: "10"},
+        {name: "滑輪飛鳥", sets: "3", reps: "15"}
+      ],
+      "星期二": [
+        {name: "槓鈴深蹲", sets: "4", reps: "6-8"},
+        {name: "羅馬尼亞硬拉", sets: "3", reps: "10"},
+        {name: "腿舉", sets: "3", reps: "12"},
+        {name: "站姿提踵", sets: "4", reps: "15"}
+      ],
+      "星期三": [{name: "積極恢復 / 休息", sets: "-", reps: "-"}],
+      "星期四": [
+        {name: "槓鈴肩推", sets: "4", reps: "8"},
+        {name: "引體上升", sets: "4", reps: "力竭"},
+        {name: "啞鈴側平舉", sets: "4", reps: "15"}
+      ],
+      "星期五": [
+        {name: "硬拉", sets: "3", reps: "5"},
+        {name: "俯身划船", sets: "4", reps: "8"},
+        {name: "二頭彎舉", sets: "3", reps: "12"},
+        {name: "三頭下壓", sets: "3", reps: "12"}
+      ],
+      "星期六": [{name: "弱點補強 / 核心訓練", sets: "-", reps: "-"}],
+      "星期日": [{name: "完全休息", sets: "-", reps: "-"}]
     },
-    logs: [] // 格式: { id, date, exercise, sets: [{weight, reps, rpe}], notes, cycleWeek }
+    logs: [] 
   };
 
-  let appData = JSON.parse(localStorage.getItem('hypertrophyApp')) || defaultData;
+  let appData = JSON.parse(localStorage.getItem('hypertrophyAppV2'));
+  
+  // 若沒有數據或舊版數據，載入新版 defaultData
+  if (!appData || typeof appData.routine["星期一"] === 'string') {
+    appData = defaultData;
+    saveData();
+  }
 
-  // 取得今天的星期
   const daysMap = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
   const todayDate = new Date();
   const todayDayStr = daysMap[todayDate.getDay()];
   const todayDateStr = todayDate.toISOString().split('T')[0];
 
   function saveData() {
-    localStorage.setItem('hypertrophyApp', JSON.stringify(appData));
+    localStorage.setItem('hypertrophyAppV2', JSON.stringify(appData));
     renderAll();
   }
 
@@ -325,26 +353,33 @@
     renderAll();
   }
 
-  // ================= 渲染邏輯 =================
   function renderAll() {
     renderHome();
     renderRecord();
     renderPlan();
   }
 
+  // ================= 首頁邏輯 =================
   function renderHome() {
-    // 週期進度
     const cycle = appData.cycle;
     document.getElementById('cycle-name-display').innerText = cycle.name;
     document.getElementById('cycle-week-display').innerText = `第 ${cycle.currentWeek} 週 / ${cycle.maxWeeks} 週`;
     document.getElementById('cycle-progress').style.width = `${(cycle.currentWeek / cycle.maxWeeks) * 100}%`;
 
-    // 今日課表
     document.getElementById('today-day').innerText = todayDayStr;
-    const routineText = appData.routine[todayDayStr] || "今日無安排訓練。";
-    document.getElementById('today-routine').innerHTML = routineText.replace(/\n/g, '<br>');
+    const routine = appData.routine[todayDayStr];
+    let routineHtml = '';
+    
+    if (!routine || routine.length === 0) {
+      routineHtml = '今日無安排訓練。';
+    } else {
+      routine.forEach((ex, idx) => {
+        const setsText = (ex.sets && ex.sets !== "-") ? `<span style="color:var(--text-sub); font-size:13px;">(${ex.sets}組 x ${ex.reps})</span>` : "";
+        routineHtml += `<div style="margin-bottom: 6px;">${idx + 1}. ${ex.name} ${setsText}</div>`;
+      });
+    }
+    document.getElementById('today-routine').innerHTML = routineHtml;
 
-    // 近期紀錄 (顯示最後 3 筆)
     const recentBox = document.getElementById('recent-logs-preview');
     if (appData.logs.length === 0) {
       recentBox.innerHTML = '<div style="color:var(--text-sub);font-size:14px;">尚無訓練紀錄。</div>';
@@ -352,14 +387,13 @@
       let html = '';
       const recentLogs = [...appData.logs].reverse().slice(0, 3);
       recentLogs.forEach(log => {
-        const totalSets = log.sets.length;
         html += `
           <div class="history-item" style="padding: 10px 0;">
             <div class="h-header">
               <span class="h-title">${log.exercise}</span>
               <span class="h-date">${log.date} (W${log.cycleWeek})</span>
             </div>
-            <div class="h-details">完成 ${totalSets} 組</div>
+            <div class="h-details">完成 ${log.sets.length} 組</div>
           </div>
         `;
       });
@@ -367,8 +401,8 @@
     }
   }
 
+  // ================= 實戰紀錄邏輯 =================
   function renderRecord() {
-    // 今日已完成
     const todayLogsBox = document.getElementById('today-logs');
     const todayLogs = appData.logs.filter(log => log.date === todayDateStr);
     
@@ -378,7 +412,7 @@
       let html = '';
       todayLogs.forEach(log => {
         let setsHtml = '';
-        log.sets.forEach((set, idx) => {
+        log.sets.forEach(set => {
           setsHtml += `<span class="h-badge">${set.weight}kg x ${set.reps}</span>`;
         });
         
@@ -397,54 +431,6 @@
     }
   }
 
-  function renderPlan() {
-    document.getElementById('cycle-name-input').value = appData.cycle.name;
-    loadPlanForDay();
-  }
-
-  // ================= 互動邏輯 =================
-  
-  // 週期管理
-  function adjustWeek(change) {
-    let newWeek = appData.cycle.currentWeek + change;
-    if (newWeek >= 1 && newWeek <= appData.cycle.maxWeeks) {
-      appData.cycle.currentWeek = newWeek;
-      saveData();
-    }
-  }
-
-  function updateCycleName() {
-    const newName = document.getElementById('cycle-name-input').value;
-    if (newName) {
-      appData.cycle.name = newName;
-      saveData();
-      alert("週期名稱已更新");
-    }
-  }
-
-  function resetCycle() {
-    if (confirm("確定要結束當前 10 週週期嗎？進度將重置為第 1 週，你可以重新編排課表。")) {
-      appData.cycle.currentWeek = 1;
-      saveData();
-      switchTab('plan');
-    }
-  }
-
-  // 課表編排
-  function loadPlanForDay() {
-    const selectedDay = document.getElementById('plan-day-select').value;
-    document.getElementById('plan-day-content').value = appData.routine[selectedDay] || "";
-  }
-
-  function savePlanForDay() {
-    const selectedDay = document.getElementById('plan-day-select').value;
-    const content = document.getElementById('plan-day-content').value;
-    appData.routine[selectedDay] = content;
-    saveData();
-    alert(`${selectedDay} 的課表已儲存！`);
-  }
-
-  // 實戰紀錄 (動態組數)
   function addSetRow() {
     const container = document.getElementById('sets-container');
     const row = document.createElement('div');
@@ -462,10 +448,7 @@
     const exercise = document.getElementById('exercise-name').value;
     const notes = document.getElementById('workout-notes').value;
     
-    if (!exercise) {
-      alert("請填寫訓練動作名稱！");
-      return;
-    }
+    if (!exercise) { alert("請填寫訓練動作名稱！"); return; }
 
     const setRows = document.querySelectorAll('.set-row');
     let sets = [];
@@ -473,15 +456,10 @@
       const weight = row.querySelector('.set-weight').value;
       const reps = row.querySelector('.set-reps').value;
       const rpe = row.querySelector('.set-rpe').value;
-      if (weight && reps) {
-        sets.push({ weight, reps, rpe });
-      }
+      if (weight && reps) sets.push({ weight, reps, rpe });
     });
 
-    if (sets.length === 0) {
-      alert("請至少完整填寫一組的重量與次數！");
-      return;
-    }
+    if (sets.length === 0) { alert("請至少完整填寫一組的重量與次數！"); return; }
 
     const log = {
       id: Date.now().toString(),
@@ -495,11 +473,10 @@
     appData.logs.push(log);
     saveData();
 
-    // 清空表單
     document.getElementById('exercise-name').value = '';
     document.getElementById('workout-notes').value = '';
     document.getElementById('sets-container').innerHTML = '';
-    addSetRow(); // 預留一行新的
+    addSetRow();
   }
 
   function deleteLog(id) {
@@ -509,9 +486,89 @@
     }
   }
 
-  // 初始化執行
+  // ================= 課表編排邏輯 =================
+  function renderPlan() {
+    document.getElementById('cycle-name-input').value = appData.cycle.name;
+    loadPlanForDay();
+  }
+
+  function loadPlanForDay() {
+    const selectedDay = document.getElementById('plan-day-select').value;
+    const container = document.getElementById('plan-exercises-container');
+    container.innerHTML = '';
+    
+    const exercises = appData.routine[selectedDay];
+    
+    if (!exercises || exercises.length === 0) {
+      // 預設給予 4 格空白輸入
+      for(let i=0; i<4; i++) addPlanExerciseRow();
+    } else {
+      exercises.forEach(ex => addPlanExerciseRow(ex.name, ex.sets, ex.reps));
+    }
+  }
+
+  function addPlanExerciseRow(name = '', sets = '', reps = '') {
+    const container = document.getElementById('plan-exercises-container');
+    const row = document.createElement('div');
+    row.className = 'plan-row';
+    row.innerHTML = `
+      <input type="text" class="p-name" placeholder="動作名 (如: 深蹲)" value="${name}">
+      <input type="text" class="p-sets" placeholder="組" value="${sets}">
+      <input type="text" class="p-reps" placeholder="次" value="${reps}">
+      <button class="del-btn" onclick="this.parentElement.remove()">×</button>
+    `;
+    container.appendChild(row);
+  }
+
+  function savePlanForDay() {
+    const selectedDay = document.getElementById('plan-day-select').value;
+    const rows = document.querySelectorAll('.plan-row');
+    let exercises = [];
+    
+    rows.forEach(row => {
+      const name = row.querySelector('.p-name').value.trim();
+      const sets = row.querySelector('.p-sets').value.trim();
+      const reps = row.querySelector('.p-reps').value.trim();
+      
+      if (name) {
+        exercises.push({ name, sets, reps });
+      }
+    });
+
+    appData.routine[selectedDay] = exercises;
+    saveData();
+    alert(`✅ ${selectedDay} 的課表已成功儲存！`);
+  }
+
+  // ================= 週期控制 =================
+  function adjustWeek(change) {
+    let newWeek = appData.cycle.currentWeek + change;
+    if (newWeek >= 1 && newWeek <= appData.cycle.maxWeeks) {
+      appData.cycle.currentWeek = newWeek;
+      saveData();
+    }
+  }
+
+  function updateCycleName() {
+    const newName = document.getElementById('cycle-name-input').value;
+    if (newName) {
+      appData.cycle.name = newName;
+      saveData();
+      alert("✅ 週期名稱已更新");
+    }
+  }
+
+  function resetCycle() {
+    if (confirm("確定要結束當前 10 週週期嗎？進度將重置為第 1 週。")) {
+      appData.cycle.currentWeek = 1;
+      saveData();
+      switchTab('plan');
+    }
+  }
+
+  // 初始化
   window.onload = () => {
-    addSetRow(); // 載入時先加一行空的輸入框
+    addSetRow(); 
     renderAll();
   };
 
